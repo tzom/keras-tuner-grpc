@@ -2,7 +2,7 @@ ARG PY_VERSION=3.7
 FROM python:${PY_VERSION}
 
 RUN pip install tensorflow-cpu \
-                tensorflow_datasets
+                tensorflow_datasets \
                 future \
                 numpy \
                 requests \
