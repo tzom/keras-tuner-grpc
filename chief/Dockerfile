@@ -10,7 +10,7 @@ RUN pip install tensorflow-cpu \
 
 RUN apt-get update
 RUN apt-get install -y git
-RUN git clone https://github.com/keras-team/keras-tuner-grpc.git
+RUN git clone https://github.com/tzom/keras-tuner-grpc.git
 
 ENV KERASTUNER_TUNER_ID "chief"
 ENV KERASTUNER_ORACLE_IP "127.0.0.1"
