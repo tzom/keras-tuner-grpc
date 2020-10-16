@@ -14,7 +14,5 @@ RUN apt-get install -y git
 RUN git clone https://github.com/tzom/keras-tuner-grpc.git
 
 ENV KERASTUNER_TUNER_ID "tuner"${TUNERX}
-ENV KERASTUNER_ORACLE_IP "127.0.0.1"
+ENV KERASTUNER_ORACLE_IP "0.0.0.0"
 ENV KERASTUNER_ORACLE_PORT "8000"
-EXPOSE 8000
-

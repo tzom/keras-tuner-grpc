@@ -1,4 +1,15 @@
 version: "3"
 services:
-  keras-tuner:
+  keras-tuner-chief:
     image: tzom/keras-tuner-grpc:chief_latest
+    command: ['sleep','infinity']
+    ports:
+    - "8000:8000"
+    env:
+      - name: CHIEF_POD_IP
+        valueFrom:
+          fieldRef:
+            fieldPath: status.podIP
+  keras-tuner-tunerx:
+    image: tzom/keras-tuner-grpc:tunerx_latest
+    command: ['sleep','infinity']
