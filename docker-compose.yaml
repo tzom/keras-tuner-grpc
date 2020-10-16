@@ -1,0 +1,4 @@
+version: "3"
+services:
+  keras-tuner:
+    image: tzom/keras-tuner-grpc:chief_latest
