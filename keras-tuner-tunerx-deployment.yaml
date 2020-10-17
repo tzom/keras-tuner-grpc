@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: keras-tuner-tunerx
+  name: keras-tuner-tunerx
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      io.kompose.service: keras-tuner-tunerx
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: keras-tuner-tunerx
+    spec:
+      containers:
+      - args:
+        - bash
+        - -c
+        - 'export KERASTUNER_ORACLE_IP=$KERAS_TUNER_CHIEF_SERVICE_HOST && cd /keras-tuner-grpc && python keras_tuner_script.py && sleep infinity'
+        env:
+        #- name: KERASTUNER_ORACLE_IP
+        #  value: "10.42.4.171"
+        - name: KERASTUNER_ORACLE_PORT
+          value: "8000"
+        - name: KERASTUNER_TUNER_ID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        image: tzom/keras-tuner-grpc:tunerx_0.0.1
+        imagePullPolicy: ""
+        name: keras-tuner-tunerx
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}
